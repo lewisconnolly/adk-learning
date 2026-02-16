@@ -30,11 +30,15 @@ print(f"Google API Key set: {'Yes' if os.environ.get('GOOGLE_API_KEY') else 'No'
 print(f"Anthropic API Key set: {'Yes' if os.environ.get('ANTHROPIC_API_KEY') else 'No'}")
 
 # --- Imports ---
-from .interact import call_agent_async, chat, run_team_conversation
+from .interact import call_agent_async, chat, run_team_conversation, run_stateful_conversation
+from .session_stateful import get_session_service as get_session_service_stateful
+
 
 __all__ = [
     # Interaction functions
     "call_agent_async",
     "chat",
     "run_team_conversation",
+    "run_stateful_conversation",
+    "get_session_service_stateful",
 ]

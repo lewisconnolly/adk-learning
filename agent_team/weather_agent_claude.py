@@ -8,7 +8,6 @@ from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
 
 root_weather_agent_claude = None
-runner_root_claude = None # Initialize runner
 
 if greeting_agent and farewell_agent and 'get_weather' in globals():
     try:

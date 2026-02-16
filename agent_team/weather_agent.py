@@ -9,7 +9,6 @@ from google.adk.agents import Agent
 # Ensure sub-agents were created successfully before defining the root agent.
 # Also ensure the original 'get_weather' tool is defined.
 root_weather_agent = None
-runner_root = None # Initialize runner
 
 if greeting_agent and farewell_agent and 'get_weather' in globals():
     try:

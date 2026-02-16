@@ -33,17 +33,22 @@ async def get_session():
 
 # --- Runner ---
 # Key Concept: Runner orchestrates the agent execution loop.
-runner = Runner(
-    agent=get_weather_agent(),
-    app_name=APP_NAME,
-    session_service=session_service
-)
-print(f"Runner created for agent '{runner.agent.name}'.")
-
-
-def get_runner() -> Runner:
-    """Returns the configured Runner instance."""
-    return runner
+def get_runner() -> Runner | None:
+    """Returns the configured Runner instance (lazy initialization)."""
+    global _runner, _runner_initialized
+    if not _runner_initialized:
+        try:
+            _runner = Runner(
+                agent=get_weather_agent(),
+                app_name=APP_NAME,
+                session_service=session_service
+            )
+            print(f"Runner created for agent '{_runner.agent.name}'.")
+        except Exception as e:
+            print(f"Could not create Claude runner. Check API Key and model name. Error: {e}")
+            _runner = None
+        _runner_initialized = True
+    return _runner
 
 
 def get_user_id() -> str:
